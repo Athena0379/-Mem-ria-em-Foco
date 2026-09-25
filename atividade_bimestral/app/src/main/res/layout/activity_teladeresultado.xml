@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/images__1_"
     tools:context=".teladeresultado">
 
     <FrameLayout
@@ -15,7 +16,7 @@
 
         <LinearLayout
             android:layout_width="275dp"
-            android:layout_height="400dp"
+            android:layout_height="347dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:orientation="vertical"
@@ -33,18 +34,20 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:text="Parabens" />
+                    android:text="Parabens"
+                    android:textColor="@color/design_default_color_primary"
+                    android:textSize="34sp" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="295dp"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="284dp"
+                    android:layout_height="189dp"
                     android:orientation="horizontal">
 
                     <TextView
@@ -52,15 +55,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Pontuaçao Final:" />
+                        android:text="Pontuaçao Final:"
+                        android:textColor="@color/design_default_color_primary_dark"
+                        android:textSize="20sp" />
 
                     <TextView
-                        android:id="@+id/textView15"
+                        android:id="@+id/pontuacao_final"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="0"
-                        android:textAlignment="textEnd" />
+                        android:textAlignment="textEnd"
+                        android:textColor="@color/design_default_color_primary_variant"
+                        android:textSize="20sp" />
                 </LinearLayout>
 
                 <Button

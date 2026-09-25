@@ -5,18 +5,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/vegetacao"
     android:orientation="horizontal"
     tools:context=".tela_de_jogo">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="645dp"
-            app:srcCompat="@drawable/vegetacao" />
 
         <LinearLayout
             android:layout_width="433dp"
@@ -33,47 +28,34 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="7dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:orientation="horizontal">
 
                     <TextView
                         android:id="@+id/textView3"
-                        android:layout_width="wrap_content"
+                        android:layout_width="94dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Placar de Pontos" />
 
                     <TextView
-                        android:id="@+id/textView9"
+                        android:id="@+id/placar_pontos"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="0" />
+
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="horizontal">
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
 
-                    <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Tentativas Restantes" />
-
-                    <TextView
-                        android:id="@+id/textView10"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="0"
-                        android:textAlignment="textEnd" />
-                </LinearLayout>
             </LinearLayout>
 
             <LinearLayout

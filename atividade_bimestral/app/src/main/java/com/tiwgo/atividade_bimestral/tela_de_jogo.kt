@@ -1,11 +1,18 @@
 package com.tiwgo.atividade_bimestral
 
+import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
+import android.view.TextureView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.ImageButton
+import android.widget.ProgressBar
+import android.widget.SeekBar
+import android.widget.TextView
 import androidx.lifecycle.lifecycleScope
+import com.google.android.material.slider.Slider
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -40,11 +47,26 @@ class tela_de_jogo : AppCompatActivity() {
         R.drawable.urso_panda,
         R.drawable.zebra
     )
+    var progress_bar: ProgressBar? = null
+    var slider: Slider? = null
+    var placarpontos: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_tela_de_jogo)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+
+
+        placarpontos = findViewById<TextView>(R.id.placar_pontos)
+
+        progress_bar = findViewById<ProgressBar>(R.id.progress_bar)
+        slider = Slider(this)
+
+        slider?.valueFrom = 0f
+        slider?.valueTo = 100f
+        slider?.stepSize = 10f
+        slider?.value = 0f
 
         sortearCartas()
         // Percorre as linhas (de 0 a 2, totalizando 3 linhas)
@@ -68,6 +90,15 @@ class tela_de_jogo : AppCompatActivity() {
                     }
                 }
             }
+            slider?.addOnChangeListener { _, value: Float, fromUser: Boolean ->
+                progress_bar?.progress = value.toInt()
+                Log.d("text", slider?.valueFrom.toString())
+                if(value >= (slider?.valueTo ?: 0f)){
+                    val intent = Intent(this, teladeresultado::class.java)
+                    intent.putExtra(getString(R.string.pontos_keys), ponto)
+                    startActivity(intent)
+                }
+            }
         }
     }
     fun tratarCliqueCarta(linha: Int, coluna: Int, btn: ImageButton) : Unit {
@@ -86,11 +117,14 @@ class tela_de_jogo : AppCompatActivity() {
             if(ultimaCarta == pegaImagem(coordenada)){
                 selecionados[contador]?.isEnabled = false
                 ponto++
+                placarpontos?.text = ponto.toString()
                 selecionados.replaceAll{null}
             }
             else{
                 selecionados[0]?.isEnabled = true
                 lifecycleScope.launch{
+                    val novoValor: Float = (slider?.value ?: 0f) + (slider?.stepSize ?: 1f)
+                    slider?.value = novoValor
                     bloqueioInput = false
                     resetpar()
                     bloqueioInput = true
