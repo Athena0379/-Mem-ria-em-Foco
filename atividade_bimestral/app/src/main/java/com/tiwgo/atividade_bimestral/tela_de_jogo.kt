@@ -119,6 +119,11 @@ class tela_de_jogo : AppCompatActivity() {
                 ponto++
                 placarpontos?.text = ponto.toString()
                 selecionados.replaceAll{null}
+                if(ponto >= imagensDisponiveis.count()*2){
+                    val intent = Intent(this, teladeresultado::class.java)
+                    intent.putExtra(getString(R.string.pontos_keys), ponto)
+                    startActivity(intent)
+                }
             }
             else{
                 selecionados[0]?.isEnabled = true
